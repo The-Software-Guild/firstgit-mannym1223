@@ -23,13 +23,23 @@ public class DontForgetToStoreIt {
         Scanner inputReader = new Scanner(System.in);
 
         System.out.println("Give me pi to at least 5 decimals: ");
-        pi = Double.parseDouble(inputReader.nextLine());
+        try {
+            pi = Double.parseDouble(inputReader.nextLine());
+        }
+        catch(NumberFormatException e) {
+            System.out.println("Invalid input");
+        }
 
         // We've used Double.parseDouble but meaningOfLifeAndEverything is an INT
         // so we'll have to use Integer.parseInt
 
         System.out.println("What is the meaning of life, the universe & everything? ");
-        meaningOfLifeAndEverything = Integer.parseInt(inputReader.nextLine());
+        try {
+            meaningOfLifeAndEverything = Integer.parseInt(inputReader.nextLine());
+        }
+        catch(NumberFormatException e) {
+            System.out.println("Invalid input");
+        }
 
         System.out.println("What is your favorite kind of cheese? ");
         cheese = inputReader.nextLine();
