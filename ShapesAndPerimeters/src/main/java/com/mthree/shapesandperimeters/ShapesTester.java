@@ -22,6 +22,14 @@ public class ShapesTester {
         System.out.println("---Square---");
         System.out.println("Color: " + square.getColor());
         System.out.println("Perimater: " + square.getPerimeter() + ", Area: " + square.getArea());
+        
+        double radius = 3.0;
+        String blue = "Blue";
+        
+        Shape circle = new Circle(radius, blue);
+        System.out.println("---Circle---");
+        System.out.println("Color: " + circle.getColor());
+        System.out.println("Perimater: " + circle.getPerimeter() + ", Area: " + circle.getArea());
     }
     
 }
