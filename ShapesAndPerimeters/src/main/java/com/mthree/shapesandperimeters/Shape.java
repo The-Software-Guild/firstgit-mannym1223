@@ -12,6 +12,10 @@ package com.mthree.shapesandperimeters;
 public abstract class Shape {
     String color;
     
+    public String getColor() {
+        return color;
+    }
+    
     public double getArea() {
         return 0.0;
     }

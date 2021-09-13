@@ -16,9 +16,11 @@ public class ShapesTester {
      */
     public static void main(String[] args) {
         double side = 3.0;
+        String green = "Green";
         
-        Shape square = new Square(side);
+        Shape square = new Square(side, green);
         System.out.println("---Square---");
+        System.out.println("Color: " + square.getColor());
         System.out.println("Perimater: " + square.getPerimeter() + ", Area: " + square.getArea());
     }
     

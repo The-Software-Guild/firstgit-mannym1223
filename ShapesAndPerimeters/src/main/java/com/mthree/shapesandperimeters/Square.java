@@ -13,7 +13,8 @@ public class Square extends Shape {
     private double area;
     private double perimeter;
     
-    public Square(double side) {
+    public Square(double side, String color) {
+        this.color = color;
         area = side * side;
         perimeter = side * 4;
     }
