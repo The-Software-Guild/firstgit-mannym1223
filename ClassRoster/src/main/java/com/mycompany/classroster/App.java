@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.classroster;
-
+import com.mycompany.classroster.controller.*;
 /**
  *
  * @author Manny
@@ -15,7 +15,8 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ClassRosterController controller = new ClassRosterController();
+        controller.run();
     }
     
 }
