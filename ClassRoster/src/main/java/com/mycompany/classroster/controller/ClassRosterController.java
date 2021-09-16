@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package com.mycompany.classroster.controller;
+
 import com.mycompany.classroster.ui.*;
+import com.mycompany.classroster.dao.*;
+import com.mycompany.classroster.dto.*;
+
 /**
  *
  * @author Manny
@@ -12,18 +16,12 @@ import com.mycompany.classroster.ui.*;
 public class ClassRosterController {
     private ClassRosterView view = new ClassRosterView();
     private UserIO io = new UserIOConsoleImp();
+    private ClassRosterDao dao = new ClassRosterDaoFileImp();
 
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
         while (keepGoing) {
-            io.print("Main Menu");
-            io.print("1. List Student IDs");
-            io.print("2. Create New Student");
-            io.print("3. View a Student");
-            io.print("4. Remove a Student");
-            io.print("5. Exit");
-
             menuSelection = getMenuSelection();
 
             switch (menuSelection) {
@@ -31,7 +29,7 @@ public class ClassRosterController {
                     io.print("LIST STUDENTS");
                     break;
                 case 2:
-                    io.print("CREATE STUDENT");
+                    createStudent();
                     break;
                 case 3:
                     io.print("VIEW STUDENT");
@@ -52,5 +50,12 @@ public class ClassRosterController {
     
     private int getMenuSelection() {
         return view.printMenuAndGetSelection();
+    }
+    
+    private void createStudent() {
+        view.displayCreateStudentBanner();
+        Student newStudent = view.getNewStudentInfo();
+        dao.addStudent(newStudent.getStudentId(), newStudent);
+        view.displayCreateSuccessBanner();
     }
 }
