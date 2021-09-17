@@ -8,7 +8,6 @@ package com.mycompany.classroster.controller;
 import com.mycompany.classroster.ui.*;
 import com.mycompany.classroster.dao.*;
 import com.mycompany.classroster.dto.*;
-import java.util.List;
 
 /**
  *
@@ -16,7 +15,6 @@ import java.util.List;
  */
 public class ClassRosterController {
     private ClassRosterView view = new ClassRosterView();
-    private UserIO io = new UserIOConsoleImp();
     private ClassRosterDao dao = new ClassRosterDaoFileImp();
 
     public void run() {
@@ -42,11 +40,11 @@ public class ClassRosterController {
                     keepGoing = false;
                     break;
                 default:
-                    io.print("UNKNOWN COMMAND");
+                    unknownCommand();
             }
 
         }
-        io.print("GOOD BYE");
+        exitMessage();
     }
     
     private int getMenuSelection() {
@@ -75,6 +73,14 @@ public class ClassRosterController {
         view.displayRemoveStudentBanner();
         String studentId = view.getStudentIdChoice();
         view.displayRemoveResult(dao.removeStudent(studentId));
+    }
+    
+    private void unknownCommand() {
+        view.displayUnknownCommandBanner();
+    }
+    
+    private void exitMessage() {
+        view.displayExitBanner();
     }
     
 }
