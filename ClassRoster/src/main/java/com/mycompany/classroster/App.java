@@ -5,6 +5,9 @@
  */
 package com.mycompany.classroster;
 import com.mycompany.classroster.controller.*;
+import com.mycompany.classroster.ui.*;
+import com.mycompany.classroster.dao.*;
+
 /**
  *
  * @author Manny
@@ -15,7 +18,11 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ClassRosterController controller = new ClassRosterController();
+        UserIO io = new UserIOConsoleImp();
+        ClassRosterView view = new ClassRosterView(io);
+        ClassRosterDao dao = new ClassRosterDaoFileImp();
+        
+        ClassRosterController controller = new ClassRosterController(view, dao);
         controller.run();
     }
     

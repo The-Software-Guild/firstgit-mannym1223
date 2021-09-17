@@ -13,7 +13,11 @@ import java.util.List;
  * @author Manny
  */
 public class ClassRosterView {
-    private UserIO io = new UserIOConsoleImp();
+    private UserIO io;
+    
+    public ClassRosterView(UserIO io) {
+        this.io = io;
+    }
 
     public int printMenuAndGetSelection() {
         io.print("Main Menu");

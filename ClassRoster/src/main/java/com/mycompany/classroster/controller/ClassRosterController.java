@@ -14,8 +14,13 @@ import com.mycompany.classroster.dto.*;
  * @author Manny
  */
 public class ClassRosterController {
-    private ClassRosterView view = new ClassRosterView();
-    private ClassRosterDao dao = new ClassRosterDaoFileImp();
+    private ClassRosterView view;
+    private ClassRosterDao dao;
+    
+    public ClassRosterController(ClassRosterView view, ClassRosterDao dao) {
+        this.view = view;
+        this.dao = dao;
+    }
 
     public void run() {
         boolean keepGoing = true;
