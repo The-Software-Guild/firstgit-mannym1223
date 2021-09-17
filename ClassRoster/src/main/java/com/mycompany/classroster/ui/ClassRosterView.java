@@ -26,17 +26,6 @@ public class ClassRosterView {
         return io.readInt("Please select from the above choices.", 1, 5);
     }
     
-    public void displayStudentList(List<Student> studentList) {
-        for(Student currentStudent: studentList) {
-            String studentInfo = String.format("#%s : %s %s",
-              currentStudent.getStudentId(),
-              currentStudent.getFirstName(),
-              currentStudent.getLastName());
-            io.print(studentInfo);
-        }
-        io.readString("Please hit enter to continue.");
-    }
-    
     public Student getNewStudentInfo() {
         String studentId = io.readString("Please enter Student ID");
         String firstName = io.readString("Please enter First Name");
@@ -60,4 +49,36 @@ public class ClassRosterView {
     public void displayDisplayAllBanner() {
         io.print("=== Display All Students ===");
     }
+    
+    public void displayStudentList(List<Student> studentList) {
+        for(Student currentStudent: studentList) {
+            String studentInfo = String.format("#%s : %s %s",
+              currentStudent.getStudentId(),
+              currentStudent.getFirstName(),
+              currentStudent.getLastName());
+            io.print(studentInfo);
+        }
+        io.readString("Please hit enter to continue.");
+    }
+    
+    public void displayDisplayStudentBanner () {
+        io.print("=== Display Student ===");
+    }
+    
+    public String getStudentIdChoice() {
+        return io.readString("Please enter the Student ID.");
+    }
+    
+    public void displayStudent(Student student) {
+        if (student != null) {
+            io.print(student.getStudentId());
+            io.print(student.getFirstName() + " " + student.getLastName());
+            io.print(student.getCohort());
+            io.print("");
+        } else {
+            io.print("No such student.");
+        }
+        io.readString("Please hit enter to continue.");
+    }
+    
 }
