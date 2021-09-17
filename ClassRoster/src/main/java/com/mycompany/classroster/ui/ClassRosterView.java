@@ -6,6 +6,7 @@
 package com.mycompany.classroster.ui;
 
 import com.mycompany.classroster.dto.Student;
+import java.util.List;
 
 /**
  *
@@ -23,6 +24,17 @@ public class ClassRosterView {
         io.print("5. Exit");
 
         return io.readInt("Please select from the above choices.", 1, 5);
+    }
+    
+    public void displayStudentList(List<Student> studentList) {
+        for(Student currentStudent: studentList) {
+            String studentInfo = String.format("#%s : %s %s",
+              currentStudent.getStudentId(),
+              currentStudent.getFirstName(),
+              currentStudent.getLastName());
+            io.print(studentInfo);
+        }
+        io.readString("Please hit enter to continue.");
     }
     
     public Student getNewStudentInfo() {
@@ -43,5 +55,9 @@ public class ClassRosterView {
     
     public void displayCreateSuccessBanner() {
         io.readString("Student successfully created.  Please hit enter to continue");
+    }
+    
+    public void displayDisplayAllBanner() {
+        io.print("=== Display All Students ===");
     }
 }

@@ -9,6 +9,7 @@ import com.mycompany.classroster.dto.Student;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,7 +26,7 @@ public class ClassRosterDaoFileImp implements ClassRosterDao {
 
     @Override
     public List<Student> getAllStudents() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArrayList<>(students.values());
     }
 
     @Override
