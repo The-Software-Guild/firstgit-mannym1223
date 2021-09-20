@@ -15,8 +15,16 @@ import java.io.*;
  */
 public class ClassRosterDaoFileImp implements ClassRosterDao {
     private Map<String, Student> students = new HashMap<>();
-    public static final String ROSTER_FILE = "roster.txt";
+    public  String ROSTER_FILE;
     public static final String DELIMITER = "::";
+    
+    public ClassRosterDaoFileImp() {
+        ROSTER_FILE = "roster.txt";
+    }
+    
+    public ClassRosterDaoFileImp(String fileName) {
+        ROSTER_FILE = fileName;
+    }
 
     @Override
     public Student addStudent(String studentId, Student student) throws ClassRosterDaoException {
