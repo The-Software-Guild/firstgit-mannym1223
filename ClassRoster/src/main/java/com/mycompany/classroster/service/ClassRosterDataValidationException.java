@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.classroster.dao;
+package com.mycompany.classroster.service;
 
 /**
  *
  * @author Manny
  */
-public class ClassRosterDaoException extends Exception {
+public class ClassRosterDataValidationException extends Exception {
     
-    public ClassRosterDaoException(String message) {
+    public ClassRosterDataValidationException(String message) {
         super(message);
     }
-    
-    public ClassRosterDaoException(String message, Throwable cause) {
+
+    public ClassRosterDataValidationException(String message,
+            Throwable cause) {
         super(message, cause);
     }
-    
 }
