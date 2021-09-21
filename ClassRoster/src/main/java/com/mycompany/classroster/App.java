@@ -7,6 +7,7 @@ package com.mycompany.classroster;
 import com.mycompany.classroster.controller.*;
 import com.mycompany.classroster.ui.*;
 import com.mycompany.classroster.dao.*;
+import com.mycompany.classroster.service.*;
 
 /**
  *
@@ -21,8 +22,8 @@ public class App {
         UserIO io = new UserIOConsoleImp();
         ClassRosterView view = new ClassRosterView(io);
         ClassRosterDao dao = new ClassRosterDaoFileImp();
-        
-        ClassRosterController controller = new ClassRosterController(view, dao);
+        ClassRosterServiceLayer myService = new ClassRosterServiceLayerImpl(dao);
+        ClassRosterController controller = new ClassRosterController(view, myService);
         controller.run();
     }
     

@@ -6,8 +6,9 @@
 package com.mycompany.classroster.controller;
 
 import com.mycompany.classroster.ui.*;
-import com.mycompany.classroster.dao.*;
+import com.mycompany.classroster.dao.ClassRosterPersistenceException;
 import com.mycompany.classroster.dto.*;
+import com.mycompany.classroster.service.*;
 
 /**
  *
@@ -15,11 +16,11 @@ import com.mycompany.classroster.dto.*;
  */
 public class ClassRosterController {
     private ClassRosterView view;
-    private ClassRosterDao dao;
+    private ClassRosterServiceLayer service;
     
-    public ClassRosterController(ClassRosterView view, ClassRosterDao dao) {
+    public ClassRosterController(ClassRosterView view, ClassRosterServiceLayer service) {
         this.view = view;
-        this.dao = dao;
+        this.service = service;
     }
 
     public void run() {
@@ -63,26 +64,35 @@ public class ClassRosterController {
     
     private void createStudent() throws ClassRosterPersistenceException {
         view.displayCreateStudentBanner();
-        Student newStudent = view.getNewStudentInfo();
-        dao.addStudent(newStudent.getStudentId(), newStudent);
-        view.displayCreateSuccessBanner();
+        boolean hasErrors = false;
+        do {
+            Student currentStudent = view.getNewStudentInfo();
+            try {
+                service.createStudent(currentStudent);
+                view.displayCreateSuccessBanner();
+                hasErrors = false;
+            } catch (ClassRosterDuplicateIdException | ClassRosterDataValidationException e) {
+                hasErrors = true;
+                view.displayErrorMessage(e.getMessage());
+            }
+        } while (hasErrors);
     }
     
     private void listStudents() throws ClassRosterPersistenceException {
         view.displayDisplayAllBanner();
-        view.displayStudentList(dao.getAllStudents());
+        view.displayStudentList(service.getAllStudents());
     }
     
     private void viewStudent() throws ClassRosterPersistenceException {
         view.displayDisplayStudentBanner();
         String studentId = view.getStudentIdChoice();
-        view.displayStudent(dao.getStudent(studentId));
+        view.displayStudent(service.getStudent(studentId));
     }
     
     private void removeStudent() throws ClassRosterPersistenceException {
         view.displayRemoveStudentBanner();
         String studentId = view.getStudentIdChoice();
-        view.displayRemoveResult(dao.removeStudent(studentId));
+        view.displayRemoveResult(service.removeStudent(studentId));
     }
     
     private void unknownCommand() {
